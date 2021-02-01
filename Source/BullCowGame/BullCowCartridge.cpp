@@ -53,6 +53,25 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
     }
 }
 
+bool UBullCowCartridge::IsIsogram(FString Word)
+{
+    int32 count = 0;
+    int32 len = Word.Len();
+    for (int i = 0; i < len; i++) {
+        char curr = Word[i];
+        for (int j = 0; j < len; j++) {
+            if (curr == Word[j]) {
+                count++;
+            }
+            if (count == 2) {
+                return false;
+            }
+        }
+        count = 0;
+    }
+    return true;
+}
+
 void UBullCowCartridge::InitGame() 
 {
     PrintLine(TEXT("Welcome to Bull Cows!\n"));
@@ -64,6 +83,9 @@ void UBullCowCartridge::InitGame()
     PrintLine(TEXT("Guess the %i letter word!\n"), HiddenWord.Len());
     PrintLine(TEXT("You have %i Lives"), Lives);
     PrintLine(TEXT("Type in your guess. \nPress enter to continue..."));
+
+    const TCHAR HW[] = TEXT("cakes");
+    PrintLine(TEXT("Character 1 of the hiddeon word is %c"), HW[0]);
 }
 
 void UBullCowCartridge::EndGame() 
