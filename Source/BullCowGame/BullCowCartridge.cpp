@@ -56,7 +56,7 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
     }
 }
 
-bool UBullCowCartridge::IsIsogram(FString Word)
+bool UBullCowCartridge::IsIsogram(FString Word) const
 {
     int32 Len = Word.Len();
     for (int i = 0; i < Len; i++) {
