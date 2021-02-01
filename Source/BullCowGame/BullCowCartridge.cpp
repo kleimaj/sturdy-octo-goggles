@@ -8,7 +8,8 @@ void UBullCowCartridge::BeginPlay() // When the game starts
     PrintLine(TEXT("Welcome to Bull Cows!\n"));
     PrintLine(TEXT("Guess the 4 letter word!\n")); // modularize this  into a variable
     PrintLine(TEXT("Press enter to continue..."));
-    HiddenWord = TEXT("cake");
+
+    InitGame(); // Setting up game
 }
 
 void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
@@ -20,4 +21,10 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
     else {
         PrintLine(TEXT("Incorrect Word"));
     }
+}
+
+void UBullCowCartridge::InitGame() 
+{
+    HiddenWord = TEXT("cake");
+    Lives = 4;
 }
