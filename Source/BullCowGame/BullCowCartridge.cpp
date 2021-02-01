@@ -35,12 +35,16 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
     }
     else {
         if (Guess.Len() != HiddenWord.Len()) {
-            PrintLine(TEXT("The Hidden Word is %i characters long!"), HiddenWord.Len());
+            PrintLine(TEXT("Sorry, try guessing again! \nThe Hidden Word is %i characters long!"), HiddenWord.Len());
+            return;
         }
+
+        // Check if Isogram
         --Lives;
         PrintLine(TEXT("You lost a life!"));
         if (Lives == 0) {
             PrintLine(TEXT("You have no lives left!"));
+            PrintLine(TEXT("The hidden word was: %s"), *HiddenWord);
             EndGame();
         }
         else {
