@@ -9,7 +9,7 @@ void UBullCowCartridge::BeginPlay() // When the game starts
 
     const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordList/HiddenWordList.txt");
     FFileHelper::LoadFileToStringArray(Words, *WordListPath);    
-    TArray<FString> ValidWords = GetValidWords(Words);
+
     InitGame();
 
 
@@ -91,8 +91,9 @@ bool UBullCowCartridge::IsIsogram(const FString& Word) const
 void UBullCowCartridge::InitGame() 
 {
     PrintLine(TEXT("Welcome to Bull Cows!\n"));
-    
-    HiddenWord = TEXT("cake");
+    TArray<FString> ValidWords = GetValidWords(Words);
+    HiddenWord = ValidWords[FMath::RandRange(0, ValidWords.Num()-1)];
+    PrintLine(TEXT("%s"), *HiddenWord);
     Lives = HiddenWord.Len();
     bGameOver = false;
 
