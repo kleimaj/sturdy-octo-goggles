@@ -36,11 +36,11 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
 TArray<FString> UBullCowCartridge::GetValidWords(TArray<FString> Words) const
 {
     TArray<FString> ValidWords;
-        for (int32 Index = 0; Index < Words.Num(); Index++) {
-            if (Words[Index].Len() >= 4 
-                && Words[Index].Len() <= 8 
-                && IsIsogram(Words[Index])) {
-                ValidWords.Emplace(Words[Index]);
+        for (FString Word : Words) {
+            if (Word.Len() >= 4 
+                && Word.Len() <= 8 
+                && IsIsogram(Word)) {
+                ValidWords.Emplace(Word);
             }
     }
     return ValidWords;
